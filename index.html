@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piadas no Guardanapo</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', 'Chalkduster', 'cursive', sans-serif;
+            background-color: #f0e6d2; /* Cor de fundo tipo mesa de madeira clara */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .napkin {
+            background-color: #fdfdfd; /* Branco do guardanapo */
+            border: 1px solid #ddd;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 2px; /* Levemente arredondado */
+        }
+
+        .outer-border {
+            border: 2px solid #333; /* Borda externa mais grossa */
+            padding: 20px;
+        }
+
+        .joke-container {
+            margin-bottom: 20px;
+        }
+
+        .joke-box, .punchline-box, .reveal-button {
+            border: 2px solid #333; /* Borda dos retângulos internos */
+            padding: 15px;
+            margin-bottom: 10px;
+            text-align: center;
+            background-color: #fff; /* Para garantir que o texto não fique transparente sobre o fundo */
+        }
+
+        .joke-box {
+            font-size: 1.1em;
+        }
+
+        .reveal-button {
+            cursor: pointer;
+            font-weight: bold;
+            color: #333;
+            background-color: #f9f9f9;
+            transition: background-color 0.2s;
+        }
+
+        .reveal-button:hover {
+            background-color: #efefef;
+        }
+
+        .punchline-box {
+            display: none; /* Escondido por padrão */
+            font-style: italic;
+            color: #555;
+        }
+
+        .separator {
+            text-align: center;
+            font-size: 1.5em;
+            color: #333;
+            margin: 25px 0;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        .separator hr {
+            display: none; /* Esconde a linha padrão do HR se usarmos */
+        }
+        .separator span {
+            display: inline-block;
+            position: relative;
+        }
+        .separator span::before,
+        .separator span::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 50px; /* Comprimento das linhas */
+            height: 2px;
+            background-color: #333;
+        }
+        .separator span::before {
+            right: 100%;
+            margin-right: 10px;
+        }
+        .separator span::after {
+            left: 100%;
+            margin-left: 10px;
+        }
+
+
+        .signature {
+            border: 2px solid #333;
+            padding: 8px 12px;
+            text-align: center;
+            font-size: 0.9em;
+            margin-top: 30px;
+            display: inline-block; /* Para que a borda se ajuste ao conteúdo */
+            float: right; /* Alinha à direita */
+        }
+
+        /* Clearfix para o float da assinatura */
+        .napkin::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="napkin">
+        <div class="outer-border">
+
+            <!-- Piada 1 -->
+            <div class="joke-container">
+                <div class="joke-box" id="joke1-setup">
+                    Por que o esqueleto não brigou com ninguém?
+                </div>
+                <div class="reveal-button" onclick="revealPunchline('joke1')">
+                    PUSH TO REVEAL PUNCHLINE
+                </div>
+                <div class="punchline-box" id="joke1-punchline">
+                    Porque ele não tinha estômago para isso!
+                </div>
+            </div>
+
+            <div class="separator">
+                <span>||</span>
+            </div>
+
+            <!-- Piada 2 -->
+            <div class="joke-container">
+                <div class="joke-box" id="joke2-setup">
+                    O que o pato disse para a pata?
+                </div>
+                <div class="reveal-button" onclick="revealPunchline('joke2')">
+                    PUSH TO REVEAL PUNCHLINE
+                </div>
+                <div class="punchline-box" id="joke2-punchline">
+                    Vem Quá!
+                </div>
+            </div>
+
+            <div class="signature">
+                by DUBOC@
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function revealPunchline(jokeId) {
+            const punchline = document.getElementById(jokeId + '-punchline');
+            const button = event.target; // O botão que foi clicado
+
+            if (punchline) {
+                punchline.style.display = 'block';
+            }
+            if (button) {
+                button.style.display = 'none'; // Esconde o botão após clicar
+            }
+        }
+    </script>
+
+</body>
+</html>
