@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Comic Sans MS', 'Chalkduster', 'cursive', sans-serif;
-            background-color: #f0e6d2; /* Cor de fundo tipo mesa de madeira clara */
+            background-color: #FFDAB9; /* PeachPuff */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -18,8 +18,8 @@
         }
 
         .napkin {
-            background-color: #fdfdfd; /* Branco do guardanapo */
-            border: 1px solid #ddd;
+            background-color: #FFF8DC; /* Cornsilk */
+            border: 1px solid #E67E22; /* Darker orange border for napkin */
             box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
             padding: 30px;
             width: 90%;
@@ -28,20 +28,21 @@
         }
 
         .outer-border {
-            border: 2px solid #333; /* Borda externa mais grossa */
+            border: 2px solid #E67E22; /* Darker orange */
             padding: 20px;
         }
 
         .joke-container {
             margin-bottom: 20px;
+            color: #A0522D; /* Sienna for general text */
         }
 
         .joke-box, .punchline-box, .reveal-button {
-            border: 2px solid #333; /* Borda dos retângulos internos */
+            border: 2px solid #E67E22; /* Darker orange */
             padding: 15px;
             margin-bottom: 10px;
             text-align: center;
-            background-color: #fff; /* Para garantir que o texto não fique transparente sobre o fundo */
+            background-color: #FFF8DC; /* Cornsilk - ensuring text is readable */
         }
 
         .joke-box {
@@ -51,25 +52,25 @@
         .reveal-button {
             cursor: pointer;
             font-weight: bold;
-            color: #333;
-            background-color: #f9f9f9;
+            color: #FFFFFF; /* White */
+            background-color: #FFA500; /* Orange */
             transition: background-color 0.2s;
         }
 
         .reveal-button:hover {
-            background-color: #efefef;
+            background-color: #FF8C00; /* DarkOrange */
         }
 
         .punchline-box {
             display: none; /* Escondido por padrão */
             font-style: italic;
-            color: #555;
+            color: #D2691E; /* Chocolate */
         }
 
         .separator {
             text-align: center;
             font-size: 1.5em;
-            color: #333;
+            color: #E67E22; /* Darker orange */
             margin: 25px 0;
             font-weight: bold;
             letter-spacing: 2px;
@@ -88,7 +89,7 @@
             top: 50%;
             width: 50px; /* Comprimento das linhas */
             height: 2px;
-            background-color: #333;
+            background-color: #E67E22; /* Darker orange */
         }
         .separator span::before {
             right: 100%;
@@ -101,13 +102,15 @@
 
 
         .signature {
-            border: 2px solid #333;
+            border: 2px solid #E67E22; /* Darker orange */
+            color: #A0522D; /* Sienna */
             padding: 8px 12px;
             text-align: center;
             font-size: 0.9em;
             margin-top: 30px;
             display: inline-block; /* Para que a borda se ajuste ao conteúdo */
             float: right; /* Alinha à direita */
+            background-color: #FFF8DC; /* Cornsilk */
         }
 
         /* Clearfix para o float da assinatura */
@@ -124,33 +127,16 @@
     <div class="napkin">
         <div class="outer-border">
 
-            <!-- Piada 1 -->
+            <!-- Dynamic Joke -->
             <div class="joke-container">
-                <div class="joke-box" id="joke1-setup">
-                    Por que o esqueleto não brigou com ninguém?
+                <div class="joke-box" id="joke-setup">
+                    {{ joke_setup }}
                 </div>
-                <div class="reveal-button" onclick="revealPunchline('joke1')">
+                <div class="reveal-button" id="reveal-button" onclick="revealPunchline()">
                     PUSH TO REVEAL PUNCHLINE
                 </div>
-                <div class="punchline-box" id="joke1-punchline">
-                    Porque ele não tinha estômago para isso!
-                </div>
-            </div>
-
-            <div class="separator">
-                <span>||</span>
-            </div>
-
-            <!-- Piada 2 -->
-            <div class="joke-container">
-                <div class="joke-box" id="joke2-setup">
-                    O que o pato disse para a pata?
-                </div>
-                <div class="reveal-button" onclick="revealPunchline('joke2')">
-                    PUSH TO REVEAL PUNCHLINE
-                </div>
-                <div class="punchline-box" id="joke2-punchline">
-                    Vem Quá!
+                <div class="punchline-box" id="joke-punchline">
+                    {{ joke_punchline }}
                 </div>
             </div>
 
@@ -161,9 +147,9 @@
     </div>
 
     <script>
-        function revealPunchline(jokeId) {
-            const punchline = document.getElementById(jokeId + '-punchline');
-            const button = event.target; // O botão que foi clicado
+        function revealPunchline() {
+            const punchline = document.getElementById('joke-punchline');
+            const button = document.getElementById('reveal-button');
 
             if (punchline) {
                 punchline.style.display = 'block';
